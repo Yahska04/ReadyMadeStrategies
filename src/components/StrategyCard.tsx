@@ -58,13 +58,15 @@ export default function StrategyCard({ strategy, index = 0 }: StrategyCardProps)
         </div>
       </dl>
 
-      <span
-        className="btn-secondary relative mt-5 w-full group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white"
-        aria-hidden="true"
+      {/* Real link above the card's stretched-link overlay, so clicking the button always navigates. */}
+      <Link
+        to={detailPath}
+        aria-label={`View ${strategy.name} template`}
+        className="btn-secondary relative z-10 mt-5 w-full group-hover:border-brand-600 group-hover:bg-brand-600 group-hover:text-white"
       >
         View Template
-        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-      </span>
+        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+      </Link>
     </article>
   );
 }
