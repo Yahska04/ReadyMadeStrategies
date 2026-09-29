@@ -1,13 +1,10 @@
-import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import ScrollManager from "./components/ScrollManager";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-
-// The detail page (code viewer + templates) is split into its own chunk.
-const StrategyDetail = lazy(() => import("./pages/StrategyDetail"));
+import StrategyDetail from "./pages/StrategyDetail";
 
 export default function App() {
   return (
@@ -21,13 +18,11 @@ export default function App() {
       <ScrollManager />
       <Header />
       <main id="main" className="flex-1">
-        <Suspense fallback={<div className="min-h-[60vh]" aria-busy="true" />}>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/strategies/:strategyId" element={<StrategyDetail />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/strategies/:strategyId" element={<StrategyDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </main>
       <Footer />
     </div>
